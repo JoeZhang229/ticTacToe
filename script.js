@@ -3,15 +3,14 @@ const Player = (name, mark) => {
     return { name, mark, moves };
 };
 
-const player1 = Player("Player1", "X");
-const player2 = Player("Player2", "O");
+let player1 = Player("player1", "X");
+let player2 = Player("player2", "O");
 
 const gameBoard = (() => {
     let turn = 0;
     const board = [ "", "", "", "", "", "", "", "", "" ];
     const callBoard = () => board;
     const htmlBoard = document.querySelector(".gameBoard");
-    const marks = [player1.mark, player2.mark];
     let players = [];
     const result = document.querySelector(".result");
 
@@ -29,10 +28,8 @@ const gameBoard = (() => {
     }
 
     function playerActions(player, e) {
-        console.log("current turn", player)
         e.target.textContent = player.mark;
         player.moves.push(Number(e.target.id));
-        console.log(turn); 
     }
     
     const gameStart = () => {
@@ -46,9 +43,7 @@ const gameBoard = (() => {
             cells.addEventListener("click", (e) => {
                 // player's turn and marks are alternating with every turn
                 if (e.target.textContent === "") {
-                    console.log(players);
                     let nextPlayer = players[turn % 2]
-                    console.log("next turn", nextPlayer);
                     if (turn === 0) {
                         playerActions(players[turn % 2], e);
                     } else {
@@ -65,7 +60,6 @@ const gameBoard = (() => {
             htmlBoard.appendChild(cells)
         })
     }
-    gameStart();
  
     const winCombos = [
         [0, 1, 2],
@@ -92,7 +86,20 @@ const gameBoard = (() => {
         winCombos.some((combos) =>
         combos.every((allMoves) => playerMoves.includes(allMoves))
         );
-
+    let gameStarted = false;
+    const startGameButton = () => {
+        let playerForm = document.querySelector("form");
+        let startButton = document.querySelector(".start");
+        startButton.addEventListener("click", (e) => {
+            if ((playerForm[0].value && playerForm[1].value) && !gameStarted) {
+                player1.name = playerForm[0].value
+                player2.name = playerForm[1].value
+                gameStart();
+                gameStarted = true;
+            }
+        });
+    }
+    startGameButton();
 
     const resetGame = () => {
         const allCells = document.querySelectorAll(".gameBoardCell");
@@ -105,7 +112,7 @@ const gameBoard = (() => {
         result.textContent = `${players[0].name}'s turn`;
     }
 
-    const restart = () => {
+    const restartButton = () => {
         let restartButton = document.querySelector(".restart");
         restartButton.addEventListener("click", function() {
             result.textContent = "";
@@ -113,7 +120,7 @@ const gameBoard = (() => {
             resetGame();
         });
     }
-    restart();
+    restartButton();
 
-    return { board, callBoard, gameStatus, gameStart, resetGame, restart }
+    return { board, callBoard, gameStatus, gameStart, startGameButton, resetGame, restartButton }
 })();
