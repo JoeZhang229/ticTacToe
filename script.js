@@ -12,20 +12,50 @@ const gameBoard = (() => {
     const callBoard = () => board;
     const htmlBoard = document.querySelector(".gameBoard");
     const marks = [player1.mark, player2.mark];
-    const players = [player1, player2]
+    let players = [];
     const result = document.querySelector(".result");
+
+    function randStart() {
+        // randomly changes player array to sync up turn & player marks
+        if (Math.random() > 0.5) {
+            players.push(player1)
+            players.push(player2)
+            return player1
+        } else {
+            players.push(player2)
+            players.push(player1)
+            return player2
+        }
+    }
+
+    function playerActions(player, e) {
+        console.log("current turn", player)
+        e.target.textContent = player.mark;
+        player.moves.push(Number(e.target.id));
+        console.log(turn); 
+    }
     
     const gameStart = () => {
+        randStart();
+        result.textContent = `${players[0].name}'s turn`;
         board.forEach((cell, index) => {
             let cells = document.createElement("div")
             cells.className = "gameBoardCell"
             cells.id = `${index}`
             cells.textContent = board[index]
             cells.addEventListener("click", (e) => {
+                // player's turn and marks are alternating with every turn
                 if (e.target.textContent === "") {
-                    e.target.textContent = marks[turn % 2];
-                    players[turn % 2].moves.push(Number(e.target.id));
+                    console.log(players);
+                    let nextPlayer = players[turn % 2]
+                    console.log("next turn", nextPlayer);
+                    if (turn === 0) {
+                        playerActions(players[turn % 2], e);
+                    } else {
+                        playerActions(players[turn % 2], e);
+                    }
                     turn++;
+                    result.textContent = `${players[turn % 2].name}'s turn`;
                 }
                 if (gameStatus(player1.moves, player2.moves)) {
                     result.textContent = gameStatus(player1.moves, player2.moves)
@@ -69,7 +99,10 @@ const gameBoard = (() => {
         allCells.forEach(cell => cell.textContent = "")
         player1.moves = [];
         player2.moves = [];
+        players = [];
         turn = 0;
+        randStart();
+        result.textContent = `${players[0].name}'s turn`;
     }
 
     const restart = () => {
