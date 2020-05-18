@@ -74,11 +74,11 @@ const gameBoard = (() => {
     
     const gameStatus = (player1Moves, player2Moves) => {
         if (winner(player1Moves)) {
-            return "Player1 Wins!"
+            return `${player1.name} Wins!`
         } else if (winner(player2Moves)) {
-            return "Player2 Wins!"
+            return `${player2.name} Wins!`
         } else if (turn >= 9){
-            return "It's a tie!"
+            return "It's a Tie!"
         }
     }
 

@@ -20,6 +20,13 @@ button {
     justify-content: center;
 }
 
+.result {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 150%;
+}
+
 .gameBoard {
     display: grid;
     width: 500px;
@@ -29,7 +36,11 @@ button {
 }
 
 .gameBoardCell {
+    display: flex;
     background-color: lightblue;
     border: 1px solid black;
     text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-size: 250%;
 }
