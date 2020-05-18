@@ -1,11 +1,29 @@
-body, html {
+body {
     margin: auto;
+    display: grid;
+    justify-content: center;
+}
+
+form {
+    display: grid;
+    text-align: center;
+    width: 500px;
+    height: 100px;
+    grid-template-columns: 1fr 1fr;
+}
+
+button {
+    margin: 0;
+}
+
+.gameBoardContainer {
+    justify-content: center;
 }
 
 .gameBoard {
     display: grid;
-    width: 450px;
-    height: 450px;
+    width: 500px;
+    height: 500px;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
 }
