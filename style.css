@@ -1,0 +1,17 @@
+body, html {
+    margin: auto;
+}
+
+.gameBoard {
+    display: grid;
+    width: 450px;
+    height: 450px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.gameBoardCell {
+    background-color: lightblue;
+    border: 1px solid black;
+    text-align: center;
+}
