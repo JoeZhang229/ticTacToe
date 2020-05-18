@@ -7,18 +7,28 @@
         <title>Tic Tac Toe</title>
     </head>
     <body>
-        <div class = "player1">
-        Placeholder 1
+        <form>
+           <div class="player1">
+               <label for="player1">Player 1 "X"</label>
+               <input type="text" class="player1Form" id="player1"placeholder="Name" required>
+           </div>
+            <div class="player2">
+                <label for="player2">Player 2 "O"</label>
+                <input type="text" class="player2Form" id="player2" placeholder="Name" required>
+            </div>
+            <div class="startButton">
+                <button type="button" class="start" value="button">Start</button>
+            </div>
+            <div class="restartButton">
+                <button type="button" class="restart">Restart</button>
+            </div>
+            </form>
         </div>
-        <div class ="result">
-        </div>
-        <div class= "gameBoard">
-        </div>
-        <div class = "player2">
-        Placeholder 2
-        </div>
-        <div class = "startButton">
-        <button type="button" class = "restart">Restart</button>
+        <div class="gameBoardContainer">
+            <div class="result">
+            </div>
+            <div class="gameBoard">
+            </div>
         </div>
         <script src="script.js"></script>
     </body>
