@@ -52,13 +52,11 @@ const gameBoard = (() => {
                     if (player1.turn === true) {
                         playerMarking(player1, e);
                         stateTurn(player2);
-                        console.log("player 1", player1.turn)
                         player1.turn = false;
 
                     } else if (player2.turn === true) {
                         playerMarking(player2, e);
                         stateTurn(player1);
-                        console.log("player 2", player2.turn)
                         player2.turn = false;
                     }
 
